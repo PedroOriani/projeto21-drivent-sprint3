@@ -233,8 +233,8 @@ describe('GET /hotels/:hotelId', () => {
                 name: hotel.name,
                 image: hotel.image,
                 createdAt: hotel.createdAt.toISOString(),
-                updateAt: hotel.updatedAt.toISOString(),
-                rooms: [],
+                updatedAt: hotel.updatedAt.toISOString(),
+                Rooms: [],
             })
         });
     });
