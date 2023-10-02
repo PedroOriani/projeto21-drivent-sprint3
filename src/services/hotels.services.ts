@@ -17,7 +17,7 @@ async function findHotels(userId: number) {
 
     const hotels = await hotelRepositories.findHotels();
 
-    //if (hotels.length === 0) throw notFoundError();
+    if (hotels.length === 0) throw notFoundError();
 
     return hotels    
 }
@@ -37,7 +37,7 @@ async function findHotelById(userId: number, hotelId: number) {
     if (ticket.TicketType.includesHotel === false) throw PaymentRequired()
 
     const hotel = await hotelRepositories.findHotelById(hotelId);
-    //if (!hotel) throw notFoundError();
+    if (!hotel) throw notFoundError();
 
     return hotel
 }

@@ -14,7 +14,7 @@ async function findHotelById(id: number) {
         },
         include: {
             Rooms: true
-        }
+        },
     })
 
     return hotel;

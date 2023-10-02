@@ -118,14 +118,13 @@ describe('GET /hotels', () => {
             const response = await server.get('/hotels').set('Authorization', `Bearer ${token}`);
 
             expect(response.status).toBe(httpStatus.OK);
-            expect(response.body).toEqual({
+            expect(response.body).toEqual([{
                 id: hotel.id,
                 name: hotel.name,
                 image: hotel.image,
                 createdAt: hotel.createdAt.toISOString(),
-                updateAt: hotel.updatedAt.toISOString(),
-                rooms: [],
-            })
+                updatedAt: hotel.updatedAt.toISOString(),
+            }])
         });
     });
 });
@@ -226,7 +225,7 @@ describe('GET /hotels/:hotelId', () => {
 
             const hotel = await createHotel();
 
-            const response = await server.get('/hotels/1').set('Authorization', `Bearer ${token}`);
+            const response = await server.get(`/hotels/${hotel.id}`).set('Authorization', `Bearer ${token}`);
 
             expect(response.status).toBe(httpStatus.OK);
             expect(response.body).toEqual({
