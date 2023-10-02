@@ -13,11 +13,11 @@ async function findHotels(req: AuthenticatedRequest, res: Response) {
 
 async function findHotelById(req: AuthenticatedRequest, res: Response) {
     const { userId } = req
-    const { id } = req.params
+    const { hotelId } = req.params
 
-    const hotelId = Number(id)
+    const id = Number(hotelId)
 
-    const hotel = await hotelServices.findHotelById(userId, hotelId);
+    const hotel = await hotelServices.findHotelById(userId, id);
 
     res.status(httpStatus.OK).send(hotel)
 }
