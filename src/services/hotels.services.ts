@@ -1,4 +1,4 @@
-import { notFoundError, paymentRequired } from "@/errors";
+import { notFoundError, PaymentRequired } from "@/errors";
 import { enrollmentRepository, ticketsRepository } from "@/repositories";
 import hotelRepositories from "@/repositories/hotels.repository"
 
@@ -10,9 +10,9 @@ async function findHotels(userId: number) {
     if (!ticket) throw notFoundError();
 
     if (ticket.status === "RESERVED" || ticket.TicketType.isRemote === true || ticket.TicketType.includesHotel === false){
-        throw paymentRequired()
+        throw PaymentRequired()
     }
-    
+
     const hotels = await hotelRepositories.findHotels();
 
     return hotels    
@@ -28,7 +28,7 @@ async function findHotelById(userId: number, hotelId: number) {
     if (!ticket) throw notFoundError();
 
     if (ticket.status === "RESERVED" || ticket.TicketType.isRemote === true || ticket.TicketType.includesHotel === false){
-        throw paymentRequired()
+        throw PaymentRequired()
     }
 
     const hotel = await hotelRepositories.findHotelById(hotelId);

@@ -32,6 +32,10 @@ export function handleApplicationErrors(
     });
   }
 
+  if (err.name === 'PaymentRequired') {
+    return res.status(httpStatus.PAYMENT_REQUIRED).send(err.message)
+  }
+
   if (err.name === 'NotFoundError') {
     return res.status(httpStatus.NOT_FOUND).send({
       message: err.message,
@@ -56,10 +60,6 @@ export function handleApplicationErrors(
 
   if (err.name === 'InvalidCEPError') {
     return res.status(httpStatus.BAD_REQUEST).send(err.message);
-  }
-
-  if (err.name === 'paymentRequired') {
-    return res.status(httpStatus.PAYMENT_REQUIRED).send(err.message)
   }
 
   if (err.hasOwnProperty('status') && err.name === 'RequestError') {
